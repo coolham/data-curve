@@ -5,6 +5,7 @@
 
 ```
 pip install pyqtgraph
+pip install pytest pytest-runner
 ```
 
 

@@ -7,7 +7,7 @@ from PyQt6.QtGui import QPixmap, QColor, QPainter
 from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QPushButton, QVBoxLayout
 from pyqtgraph import PlotWidget, PlotItem
 import pyqtgraph.exporters
-from forms.data_model import DataModel
+from dao.data_model import DataModel
 
 
 

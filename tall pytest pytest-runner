@@ -1,0 +1,29 @@
+[33mcommit ecf57300b04d824e89cae13976c2db1cc4be6f04[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: coolham <weijianding@gmail.com>
+Date:   Thu May 30 11:58:19 2024 +0800
+
+    add curve demo data
+
+[33mcommit 533af2398ab43aa5f928166b20c7bef3766778a5[m
+Author: John Ding <python@sohu.com>
+Date:   Thu May 30 11:13:53 2024 +0800
+
+    add tests example
+
+[33mcommit 1e4d77b8215177fe3e12f032fa9e16fd0e93e472[m
+Author: John Ding <python@sohu.com>
+Date:   Thu May 30 10:56:33 2024 +0800
+
+    add test curve form
+
+[33mcommit ada463724d93ecc3dc9bdabeaf67b0edd08b61da[m
+Author: John Ding <python@sohu.com>
+Date:   Thu May 30 10:40:13 2024 +0800
+
+    megrate to pyqt6
+
+[33mcommit 1b18100d4859b7cf7103222f07238d2b0e2efa96[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: WJ Ding <weijianding@gmail.com>
+Date:   Mon May 6 10:17:59 2024 +0800
+
+    Initial commit
