@@ -13,8 +13,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.logger = create_logger()
         self.config = MasterConfig()
+        self.init_ui()
+    
+    def init_ui(self):
         self.setWindowTitle("Main Window")
-
+        self.setMinimumSize(800, 600)
+        
         # Create the tab widget
         self.tab_widget = QTabWidget()
         self.setCentralWidget(self.tab_widget)
@@ -33,26 +37,6 @@ class MainWindow(QMainWindow):
         self.tab_widget.addTab(self.tab1, "Tab 1")
         self.tab_widget.addTab(self.tab2, "Tab 2")
 
-    def exit_clicked(self):
-        result = QMessageBox.question(self, "退出", "确认是否退出?",
-                                      QMessageBox.Yes | QMessageBox.No)
-        if result == QMessageBox.Yes:
-            self.release_resource()
-            app = QApplication.instance()  # 实例化APP，获取app的指针
-            app.quit()
-            self.logger.info('app quit.')
-        else:
-            return
 
-    def closeEvent(self, event):
-        result = QMessageBox.question(self, "退出", "确认是否退出?",
-                                      QMessageBox.Yes | QMessageBox.No)
-        if result == QMessageBox.Yes:
-            self.release_resource()
-            app = QApplication.instance()  # 实例化APP，获取app的指针
-            app.quit()
-            self.logger.info('app quit.')
-        else:
-            event.ignore()
 
 

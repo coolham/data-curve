@@ -1,5 +1,8 @@
 import sys
-from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QVBoxLayout, QHBoxLayout
+
+from forms.rt_curve_area import RtCurveArea
+from forms.rt_control_area import RtCurveControl
 
 
 class RtCurveForm(QWidget):
@@ -8,10 +11,16 @@ class RtCurveForm(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.label = QLabel("This is Tab 1")
-        self.layout = QVBoxLayout()
-        self.layout.addWidget(self.label)
+        # Layout
+        self.layout = QHBoxLayout()
         self.setLayout(self.layout)
 
+        # Curve area
+        self.curve_area = RtCurveArea(self)
+        self.layout.addWidget(self.curve_area, 5)
 
-        
+        # Status and control area
+        self.status_control_area = RtCurveControl(self)
+        self.layout.addWidget(self.status_control_area, 1)
+
+
