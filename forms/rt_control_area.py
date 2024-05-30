@@ -2,7 +2,7 @@ import sys
 import time
 from PyQt6.QtCore import QTimer, QPoint
 from PyQt6.QtGui import QPixmap, QColor
-from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QPushButton, QVBoxLayout
+from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QPushButton, QVBoxLayout, QSpacerItem, QSizePolicy
 
 
 
@@ -18,9 +18,10 @@ class RtCurveControl(QWidget):
         self.layout = QVBoxLayout()
 
         self.status_label = QLabel("Status: Ready", self)
+        
         self.layout.addWidget(self.status_label)
 
-        # Control buttons
+        # # Control buttons
         self.start_button = QPushButton("Start", self)
         self.start_button.clicked.connect(self.start)
         self.layout.addWidget(self.start_button)
@@ -28,6 +29,8 @@ class RtCurveControl(QWidget):
         self.stop_button = QPushButton("Stop", self)
         self.stop_button.clicked.connect(self.stop)
         self.layout.addWidget(self.stop_button)
+
+        self.setLayout(self.layout)
 
 
     def start(self):

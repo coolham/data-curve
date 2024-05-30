@@ -7,6 +7,8 @@ from utils.config import MasterConfig
 from utils.logger_factory import create_logger
 from version import VERSION
 from forms.rt_curve_form import RtCurveForm
+from forms.tab2_form import Tab2
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -27,12 +29,8 @@ class MainWindow(QMainWindow):
         self.tab1 = RtCurveForm()
 
         # Create the second tab
-        self.tab2 = QWidget()
-        self.tab2_label = QLabel("This is the second tab")
-        self.tab2_layout = QVBoxLayout()
-        self.tab2_layout.addWidget(self.tab2_label)
-        self.tab2.setLayout(self.tab2_layout)
-
+        self.tab2 = Tab2()
+       
         # Add the tabs to the tab widget
         self.tab_widget.addTab(self.tab1, "Tab 1")
         self.tab_widget.addTab(self.tab2, "Tab 2")

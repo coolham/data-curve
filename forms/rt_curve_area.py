@@ -4,40 +4,61 @@ import random
 import PyQt6
 from PyQt6.QtCore import QTimer, QPoint
 from PyQt6.QtGui import QPixmap, QColor, QPainter
-from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QPushButton
+from PyQt6.QtWidgets import QTabWidget, QWidget, QLabel, QPushButton, QVBoxLayout
+from pyqtgraph import PlotWidget, PlotItem
+import pyqtgraph.exporters
+from forms.data_model import DataModel
+
 
 
 class RtCurveArea(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
+        self.max_data_points = 200
+        self.init_ui()
 
-        # Canvas
-        self.canvas = QPainter(self)
+        # Create data model
+        self.data_model = DataModel()
+        self.data_model.data_signal.connect(self.update_plot)
 
-        # Data
-        self.data = []
+        # Start data generation
+        self.data_model.start()
 
-        # Timer
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_curve)
-        self.timer.start(100)
+    def init_ui(self):
+        self.layout = QVBoxLayout()
 
-    def update_curve(self):
-        # Generate new data
-        new_data = [random.randint(0, 100) for _ in range(10)]
-        self.data.extend(new_data)
+        # Create plot widget
+        self.plot_widget = PlotWidget()
+        self.plot_item = self.plot_widget.plotItem
+        self.plot_item.showGrid(x=True, y=True)
+        self.plot_item.setXRange(0, 10)
+        self.plot_item.setYRange(0, 100)
 
-        # Repaint the canvas
-        self.update()
+        # Add plot widget to layout
+        # self.setCentralWidget(self.plot_widget)
+        self.layout.addWidget(self.plot_widget)
+        self.setLayout(self.layout)
 
-    def paintEvent(self, event):
-        # Draw the curve
-        self.canvas.begin(self)
+    def update_plot(self, data):
+        # Get new data points
+        x, y = data
 
-        for i in range(len(self.data) - 1):
-            start_point = QPoint(i * 10, self.height() - self.data[i])
-            end_point = QPoint((i + 1) * 10, self.height() - self.data[i + 1])
-            # self.canvas.setPen(QColor(Qt.red))
-            self.canvas.drawLine(start_point, end_point)
+        # Set or update maximum data points limit
+        if not hasattr(self, 'max_data_points'):
+            self.max_data_points = 1000  # Default value
+        else:
+            self.max_data_points = self.max_data_points
 
-        self.canvas.end()
+        # Limit data buffer size
+        if len(x) > self.max_data_points:
+            x = x[-self.max_data_points:]
+            y = y[-self.max_data_points:]
+
+        # Update curve data
+        if not hasattr(self, 'curve'):
+            self.curve = self.plot_item.plot(x, y)
+        else:
+            self.curve.setData(x, y)
+
+        # Adjust x-axis range to show latest data
+        self.plot_item.setXRange(min(x), max(x))
