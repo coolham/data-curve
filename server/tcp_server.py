@@ -9,7 +9,7 @@ class TCPRequestHandler(socketserver.BaseRequestHandler):
             # Receive data from the client
             data = self.request.recv(1024).decode('utf-8')
             if not data:
-                break  # Client disconnected
+                return  # Client disconnected
 
             # Process the received data (e.g., print, save, etc.)
             print(f"Received from {self.client_address}: {data}")

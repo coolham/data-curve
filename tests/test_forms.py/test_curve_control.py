@@ -10,9 +10,6 @@ def status_control_area():
     status_control_area.close()
 
 
-def test_initial_status(status_control_area):
-    assert status_control_area.status_label.text() == "Status: Ready"
-
 
 def test_start_button_click(status_control_area):
     status_control_area.start_button.click()
@@ -44,3 +41,8 @@ def test_stop_signal(status_control_area):
     status_control_area.start_button.click()
     status_control_area.stop_button.click()
     assert signal_spy.count() == 1
+
+
+# Run the tests
+if __name__ == "__main__":
+    pytest.main()

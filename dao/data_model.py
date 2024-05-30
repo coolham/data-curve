@@ -3,7 +3,7 @@ import random
 from PyQt6.QtCore import QObject, QTimer, pyqtSignal
 
 
-class DataModel(QObject):
+class DataSource(QObject):
     data_signal = pyqtSignal(list)  # Signal to emit new data points
 
     def __init__(self):
