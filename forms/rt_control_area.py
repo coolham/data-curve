@@ -29,7 +29,6 @@ class RtCurveControl(QWidget):
         self.stop_button.clicked.connect(self.stop)
         self.layout.addWidget(self.stop_button)
 
-        # self.addLayout(self.layout)
 
     def start(self):
         self.status_label.setText("Status: Running")
